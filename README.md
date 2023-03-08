@@ -9,3 +9,8 @@ Turns out, that wasn't a smart approach, as it went incredibly slow and was pron
 
 ## [fileOrganizer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/fileOrganizer.py)
 This was a project inspired from the project made by @tuomaskivioja for his [YouTube channel](https://www.youtube.com/watch?v=NCvI-K0Gp90&list=PLuKvKzt4UKNGCCPx5ERvM0Bp6lLNtryjh&index=22&t=482s). Only I wrote it so that it manages my folders given the path + it only creates the given folder if and only if it finds the files within the given directory, otherwise I would have an extra folder I don't need at the moment. 
+
+## [ytDownloader.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/ytDownloader.py)
+A YouTube video and playlist downloader using the [pytube](https://pytube.io/en/latest/) library. I wanted the freedom of establishing a particular folder if I downloaded a single video or a playlist, so I implemented a small cli where you can specify what exactly are you downloading. So, if a playlist is downloaded, it creates a folder with its name and stores all the videos there, but if you are downloading a single video, then it's designated to the "YoutubeDownloader" folder.
+
+Kinda wish the resolution went to 1080p[60] or at least 720p60, but that's up to those who maintain the library.
