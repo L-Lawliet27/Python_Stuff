@@ -14,6 +14,8 @@ This was a project inspired from the one made by @tuomaskivioja for his [YouTube
 
 
 ## [ytDownloader.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/ytDownloader.py)
-A YouTube video and playlist downloader using the [pytube](https://pytube.io/en/latest/) library. I wanted the freedom of establishing a particular folder if I downloaded a single video or a playlist, so I implemented a small cli where you can specify what exactly are you downloading. So, if a playlist is downloaded, it creates a folder with its name and stores all the videos there, but if you are downloading a single video, then it's designated to the "YoutubeDownloader" folder.
+A YouTube video and playlist downloader using the [pytube](https://pytube.io/en/latest/) library. 
+
+I wanted the freedom of establishing a particular folder if I downloaded a single video or a playlist, so I implemented a small cli where you can specify what exactly are you downloading. So, if a playlist is downloaded, it creates a folder with its name and stores all the videos there, but if you are downloading a single video, then it's designated to the "YoutubeDownloader" folder.
 
 Kinda wish the resolution went to 1080p[60] or at least 720p60, but that's up to those who maintain the library.
