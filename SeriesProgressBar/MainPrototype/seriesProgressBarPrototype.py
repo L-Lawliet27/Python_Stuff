@@ -30,7 +30,7 @@ def main():
                     window["-INPUT-"].update("")
                     window.close()
                     window, progBarValues, buttonMaxValues, buttonsBooks = initiateWindowElements()
-
+                    setBar=True
         except Exception as e:
             sg.popup_error(str(e))
     window.close()
