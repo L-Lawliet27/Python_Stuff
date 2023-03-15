@@ -43,14 +43,13 @@ def getSeries(url):
 
         if author == "" or currentLenght < len(authorName):
             first_author = authorName[0].text.strip()[:-26]
-            second_author = authorName[1].text.strip(
-            )[:-8] if len(authorName) == 2 else ""
+            second_author = authorName[1].text.strip()[:-8] if len(authorName) == 2 else ""
             author = f"{first_author}, {second_author}" if second_author else first_author
             series['author'] = author
             currentLenght = len(authorName)
 
         series["entries"][bookName] = {
-            'boughtOn': 0, 'readOn': 0, 'read': False}
+            'boughtOn': "", 'readOn': "", 'read': False}
 
     driver.close()
     return saveSeries(seriesName, series)

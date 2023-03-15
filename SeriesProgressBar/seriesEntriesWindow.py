@@ -78,6 +78,7 @@ def saveValuesToJson(seriesTitle, series, updatedCompletionValue, values):
 
 
 
+#The one that involves creating each individual book's componenet for a series 
 
 # INIT Series ENTRIES
 # -------------------------------------------------------------------------------------------------------------------------------------------------# -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,16 +88,19 @@ def initSeriesEntries(sg, seriesEntries):
     # seriesEntries is the dictionary of seriesList[series], series being the name of the series, as to access its dict
     for i, book in enumerate(seriesEntries, 1):
         bookEntry = sg.Text(book, font=bookFont)
+        boughtOn = seriesEntries[book]["boughtOn"]
+        readOn = seriesEntries[book]["readOn"]
+        read = seriesEntries[book]["read"]
+
         bookEntries.append([bookEntry])
         bookEntries.append([sg.CalendarButton("Date Bought", close_when_date_chosen=True, target=f"-BOUGHT{i}-", format="%y-%m-%d"),
-                            sg.Input(key=f"-BOUGHT{i}-", size=(7, 1), change_submits=True),
+                            sg.Input(key=f"-BOUGHT{i}-", size=(7, 1), change_submits=True, default_text=boughtOn),
                             sg.CalendarButton("Date Read", close_when_date_chosen=True,
-                                              target=f"-DREAD{i}-", format="%y-%m-%d"), sg.Input(key=f"-DREAD{i}-", size=(7, 1), change_submits=True),
-                            sg.Checkbox("", default=False, key=f"-READ{i}-", change_submits=True)
+                                              target=f"-DREAD{i}-", format="%y-%m-%d"), sg.Input(key=f"-DREAD{i}-", size=(7, 1), change_submits=True, default_text=readOn),
+                            sg.Checkbox("", default=read, key=f"-READ{i}-", change_submits=True)
                             ])
     return bookEntries
 # -------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 #The Window for the Books of a Series
 
