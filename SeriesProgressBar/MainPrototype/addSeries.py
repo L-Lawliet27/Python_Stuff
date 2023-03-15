@@ -71,7 +71,7 @@ def addNewEntries(seriesListEntries, seriesEntries):
 
 def saveSeries(seriesName, series):
     newEntriesAdded = False
-    with open('bookDataTest.json', 'r') as readFile:
+    with open('bookData.json', 'r') as readFile:
         seriesList = json.load(readFile)
     if seriesName in seriesList.keys(): 
         if len(series["entries"]) == len(seriesList[seriesName]["entries"]):
@@ -80,7 +80,7 @@ def saveSeries(seriesName, series):
            newEntriesAdded=addNewEntries(seriesList[seriesName]["entries"], series["entries"])
     else:
         seriesList[seriesName] = series
-    with open('bookDataTest.json', 'w') as writeFile:
+    with open('bookData.json', 'w') as writeFile:
         json.dump(seriesList, writeFile, indent=4)
     return newEntriesAdded
 # -------------------------------------------------------------------------------------------------------------------------------------------------

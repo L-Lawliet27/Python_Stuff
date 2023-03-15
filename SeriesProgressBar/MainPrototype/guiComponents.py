@@ -24,7 +24,7 @@ def setInitalProgress(window, progBarValues):
 # INIT PROGRESS BARS
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 def initSeriesComponents():
-    with open('bookDataTest.json', 'r') as readFile:
+    with open('bookData.json', 'r') as readFile:
         seriesList = json.load(readFile)
     progBarValues = {}
     buttonMaxValues = {}
