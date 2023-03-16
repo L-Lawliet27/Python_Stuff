@@ -13,20 +13,8 @@ usage = "\nUsage: [python3] ytDownloader.py <option> <url>\n\n" + \
     "-v:  download single video\n" + \
     "-p:  download playlist\n" +\
     "-a:  download audio from video (takes a while)\n" + \
+    "-m:  download audio from playlist (takes a while)\n" + \
     "-h:  this help message\n\n"
- 
-def getDownloadFolder(name, path):
-    newDir = path+name
-    makedirs(newDir, exist_ok=True)
-    return newDir
-
-
-def downloadPlaylist(url):
-    playlist = Playlist(url)
-    playlistTitle = playlist.title
-    downloadFolder = getDownloadFolder(name=playlistTitle,path=videoPath)
-    for v in playlist.videos:
-        downloadVideo(url=None, video=v, folder=downloadFolder)
 
 
 def cleanVideoTitle(videoTitle):
@@ -36,28 +24,45 @@ def cleanVideoTitle(videoTitle):
             title=title.strip().split(t)[0].rstrip()
             break
     return title
+ 
+
+def getDownloadFolder(name, path):
+    newDir = path+name
+    makedirs(newDir, exist_ok=True)
+    return newDir
 
 
-def downloadVideo(url=None, video=None, folder=None):
+def downloadPlaylist(option,url):
+    playlist = Playlist(url)
+    playlistTitle = playlist.title
+    if option=="-p":
+        downloadFolder = getDownloadFolder(name=playlistTitle,path=videoPath)
+        contentOpt="-v"
+    elif option=="-m":
+        downloadFolder = getDownloadFolder(name=playlistTitle,path=audioPath)
+        contentOpt="-a"
+    
+    for v in playlist.videos:
+        v.title = cleanVideoTitle(v.title)
+        downloadContent(option=contentOpt,url=None, video=v, folder=downloadFolder)
+
+
+def downloadContent(option, url=None, video=None, folder=None):
     if url is not None:
         video = YouTube(url)
         video.title = cleanVideoTitle(video.title)
-        folder = getDownloadFolder(name=defaultVideoFolder, path=videoPath)
-
-    resolution = video.streams.get_highest_resolution()  # Only goes up to 720p
-    resolution.download(folder)
-
-
-def downloadAudio(url):
-    video = YouTube(url)
-    video.title = cleanVideoTitle(video.title)
-    folder = getDownloadFolder(name=defaultAudioFolder, path=audioPath)
-    videoMP4 = video.streams.get_lowest_resolution() # As we are only interested in the audio
-    pathToMP4 = videoMP4.download(folder)
-    pathToMP3 = pathToMP4.replace(".mp4",".mp3")
-    clip = VideoFileClip(pathToMP4) # This is because pytube downloads the audio as mp4 by defect
-    clip.audio.write_audiofile(pathToMP3)
-    remove(pathToMP4)
+        folder = getDownloadFolder(name=defaultVideoFolder, path=videoPath) if option=="-v" \
+            else getDownloadFolder(name=defaultAudioFolder, path=audioPath)
+    if option=="-v":
+        resolution = video.streams.get_highest_resolution()  # Only goes up to 720p
+        resolution.download(folder)
+    else:
+        videoMP4 = video.streams.get_lowest_resolution() # As we are only interested in the audio
+        pathToMP4 = videoMP4.download(folder)
+        pathToMP3 = pathToMP4.replace(".mp4",".mp3")
+        clip = VideoFileClip(pathToMP4) # This is because pytube downloads the audio as mp4 by defect
+        clip.audio.write_audiofile(pathToMP3)
+        remove(pathToMP4)
 
 
 
@@ -72,13 +77,12 @@ def main():
             raise Exception("The Link Field cannot be empty\n")
 
         url = argv[2]
+        option = argv[1]
 
-        if argv[1] == "-v":
-            downloadVideo(url)
-        elif argv[1] == "-p":
-            downloadPlaylist(url)
-        elif argv[1] == "-a":
-            downloadAudio(url)
+        if option == "-v" or option=="-a":
+            downloadContent(option, url, None, None)
+        elif option == "-p" or option=="-m":
+            downloadPlaylist(option, url)
         else:
             raise Exception("Invalid Option\n")
     except KeyboardInterrupt:
