@@ -1,38 +1,40 @@
 from pytube import Playlist, YouTube
-from moviepy.video.io.VideoFileClip import VideoFileClip
-from os import path, makedirs, rmdir
+from os import makedirs, remove
 from sys import argv
+from moviepy.editor import VideoFileClip
 
 videoPath = "/Users/Andres/Movies/"
-defaultFolderName = "YouTubeDownloader"
+audioPath = "/Users/Andres/Music/"
+defaultVideoFolder = "YouTubeDownloader"
+defaultAudioFolder = "YouTubeAudioDownloader"
+troublingCharacters = (":","(","[","-","—","{","/")
 
 usage = "\nUsage: [python3] ytDownloader.py <option> <url>\n\n" + \
     "-v:  download single video\n" + \
     "-p:  download playlist\n" +\
+    "-a:  download audio from video (takes a while)\n" + \
     "-h:  this help message\n\n"
  
-def getDownloadFolder(name=defaultFolderName):
-    newDir = path.join(videoPath, name)
-    makedirs(newDir, exist_ok=True, mode=0o777)
+def getDownloadFolder(name, path):
+    newDir = path+name
+    makedirs(newDir, exist_ok=True)
     return newDir
 
 
 def downloadPlaylist(url):
     playlist = Playlist(url)
     playlistTitle = playlist.title
-    downloadFolder = getDownloadFolder(name=playlistTitle)
+    downloadFolder = getDownloadFolder(name=playlistTitle,path=videoPath)
     for v in playlist.videos:
         downloadVideo(url=None, video=v, folder=downloadFolder)
 
 
 def cleanVideoTitle(videoTitle):
     title = videoTitle.replace(" ", "")
-    if ":" in title:
-        title=title.replace(":", "_")
-    if "(" in title:
-         title=title.strip().split("(")[0].rstrip()
-    if "[" in title:
-        title=title.strip().split("[")[0].rstrip()
+    for t in troublingCharacters:
+        if t in title:
+            title=title.strip().split(t)[0].rstrip()
+            break
     return title
 
 
@@ -40,10 +42,23 @@ def downloadVideo(url=None, video=None, folder=None):
     if url is not None:
         video = YouTube(url)
         video.title = cleanVideoTitle(video.title)
-        folder = getDownloadFolder()
+        folder = getDownloadFolder(name=defaultVideoFolder, path=videoPath)
 
     resolution = video.streams.get_highest_resolution()  # Only goes up to 720p
     resolution.download(folder)
+
+
+def downloadAudio(url):
+    video = YouTube(url)
+    video.title = cleanVideoTitle(video.title)
+    folder = getDownloadFolder(name=defaultAudioFolder, path=audioPath)
+    videoMP4 = video.streams.get_lowest_resolution() # As we are only interested in the audio
+    pathToMP4 = videoMP4.download(folder)
+    pathToMP3 = pathToMP4.replace(".mp4",".mp3")
+    clip = VideoFileClip(pathToMP4) # This is because pytube downloads the audio as mp4 by defect
+    clip.audio.write_audiofile(pathToMP3)
+    remove(pathToMP4)
+
 
 
 def main():
@@ -62,6 +77,8 @@ def main():
             downloadVideo(url)
         elif argv[1] == "-p":
             downloadPlaylist(url)
+        elif argv[1] == "-a":
+            downloadAudio(url)
         else:
             raise Exception("Invalid Option\n")
     except KeyboardInterrupt:
