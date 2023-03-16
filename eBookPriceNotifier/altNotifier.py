@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-
 def waitForLoad(driver):
     # Scroll to the bottom of the page and wait for new items to load
     last_height = driver.execute_script("return document.body.scrollHeight")
@@ -48,12 +47,13 @@ def getBooks(url,domain):
         price_tag = priceTag.find('span', {"class": "a-offscreen"})
         price = float(price_tag.text.split('€')[0].rstrip().replace(',', '.'))
         books[name] = {"price": price, "link": parsedLink}
+    driver.close()
     return books
 
 
 def save(wishlist):
     with open('booksInfo.json', 'w') as file:
-        json.dump(wishlist, file)
+        json.dump(wishlist, file, indent=4)
 
 
 def lookForChange(previous, onWishlist):
