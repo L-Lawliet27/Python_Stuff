@@ -32,7 +32,7 @@ def cleanVideoTitle(videoTitle):
     if "(" in title:
          title=title.strip().split("(")[0].rstrip()
     if "[" in title:
-        title=title.strip().split("(")[0].rstrip()
+        title=title.strip().split("[")[0].rstrip()
     return title
 
 
