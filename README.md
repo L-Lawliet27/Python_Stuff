@@ -20,6 +20,11 @@ I wanted the freedom of establishing a particular folder if I downloaded a singl
 
 Kinda wish the resolution went to 1080p[60] or at least 720p60, but that's up to those who maintain the library.
 
+### Update [16/03/23]
+I implemented the option of downloading audio from a video and from a playlist. Now, if you wonder why I utilized the [moviepy](https://pypi.org/project/moviepy/) library to do this instead of [pydub](https://pypi.org/project/pydub/) or plain-old ffmpeg, it's because I have an error downloading the latter (along with ffmpeg-python) with Homebrew as my OSX is no longer compatible with the version currently supported by Homebrew, so it's prone to have errors when downloading software using it.
+
+So yeah, that's where I'm at. On the other side, I tried to avoid repetition as much as possible, so I combined several functions that did the same thing into one as to not clutter the code. Finally, I used [retry](https://pypi.org/project/retry/) to run my download function again up to some tries, as sometimes pytube has a bug where it cannot download/access a video, but then on the second/third try it performs normally.
+
 
 ## [Series ProgressBar](https://github.com/L-Lawliet27/Python_Stuff/tree/main/SeriesProgressBar/MainPrototype)
 I wanted to create a small python app with the easiest possible GUI library I could find (I settled for [PySimpleGUI](https://www.pysimplegui.org/en/latest/)).
