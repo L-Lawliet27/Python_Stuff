@@ -17,8 +17,8 @@ usage = "\nUsage: [python3] ytDownloader.py <option> <url>\n\n" + \
     "-h:  this help message\n\n"
 
 
-def cleanVideoTitle(videoTitle):
-    title = videoTitle.replace(" ", "")
+def cleanTitle(t):
+    title = t.replace(" ", "")
     for t in troublingCharacters:
         if t in title:
             title=title.strip().split(t)[0].rstrip()
@@ -34,7 +34,7 @@ def getDownloadFolder(name, path):
 
 def downloadPlaylist(option,url):
     playlist = Playlist(url)
-    playlistTitle = playlist.title
+    playlistTitle = cleanTitle(playlist.title)
     contentOpt=None
     if option=="-p":
         downloadFolder = getDownloadFolder(name=playlistTitle,path=videoPath)
@@ -44,14 +44,14 @@ def downloadPlaylist(option,url):
         #contentOpt="-a"
     
     for v in playlist.videos:
-        v.title = cleanVideoTitle(v.title)
+        v.title = cleanTitle(v.title)
         downloadContent(option=contentOpt,url=None, video=v, folder=downloadFolder)
 
 
 def downloadContent(option, url=None, video=None, folder=None):
     if url is not None:
         video = YouTube(url)
-        video.title = cleanVideoTitle(video.title)
+        video.title = cleanTitle(video.title)
         folder = getDownloadFolder(name=defaultVideoFolder, path=videoPath) if option=="-v" \
             else getDownloadFolder(name=defaultAudioFolder, path=audioPath)
     if option=="-v":
