@@ -35,12 +35,13 @@ def getDownloadFolder(name, path):
 def downloadPlaylist(option,url):
     playlist = Playlist(url)
     playlistTitle = playlist.title
+    contentOpt=None
     if option=="-p":
         downloadFolder = getDownloadFolder(name=playlistTitle,path=videoPath)
         contentOpt="-v"
-    elif option=="-m":
+    else:
         downloadFolder = getDownloadFolder(name=playlistTitle,path=audioPath)
-        contentOpt="-a"
+        #contentOpt="-a"
     
     for v in playlist.videos:
         v.title = cleanVideoTitle(v.title)
@@ -81,7 +82,7 @@ def main():
 
         if option == "-v" or option=="-a":
             downloadContent(option, url, None, None)
-        elif option == "-p" or option=="-m":
+        elif option =="-p" or option=="-m":
             downloadPlaylist(option, url)
         else:
             raise Exception("Invalid Option\n")
