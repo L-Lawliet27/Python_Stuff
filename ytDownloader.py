@@ -43,13 +43,6 @@ def downloadVideo(url=None, video=None, folder=None):
         folder = getDownloadFolder()
 
     resolution = video.streams.get_highest_resolution()  # Only goes up to 720p
-    if resolution is None:
-        if url is None:
-            try:
-                rmdir(folder)
-            except OSError:
-                pass
-        raise Exception("There's Not a Good Resolution\n")
     resolution.download(folder)
 
 
