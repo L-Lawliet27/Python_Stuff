@@ -1,6 +1,6 @@
 PythonCheatSheet.png
 TNoTW_Prologue.pdf
-altYTDownloader[Failed].py
+altYTDownloader_Failed_.py
 SI/
 eBookPriceNotifier/booksInfo.json
 eBookPriceNotifier/geckodriver.log
@@ -12,3 +12,11 @@ eBookPriceNotifier/.vscode
 eBookPriceNotifier/eBookPriceNotifier.py
 __pycache__
 .vscode
+SeriesProgressBar/bookDataTest.json
+SeriesProgressBar/PB_Formalized_Testing.ipynb
+SeriesProgressBar/PB_Notebook_Testing.ipynb
+SeriesProgressBar/ProgressBarPrototypes.py
+SeriesProgressBar/README.md
+SeriesProgressBar/service_account.json
+SeriesProgressBar/__pycache__
+.DS_Store
