@@ -23,7 +23,15 @@ Kinda wish the resolution went to 1080p[60] or at least 720p60, but that's up to
 ### Update [16/03/23]
 I implemented the option of downloading audio from a video and from a playlist. Now, if you wonder why I utilized the [moviepy](https://pypi.org/project/moviepy/) library to do this instead of [pydub](https://pypi.org/project/pydub/) or plain-old ffmpeg, it's because I have an error downloading the latter (along with ffmpeg-python) with Homebrew as my OSX is no longer compatible with the version currently supported by Homebrew, so it's prone to have errors when downloading software using it.
 
-So yeah, that's where I'm at. On the other side, I tried to avoid repetition as much as possible, so I combined several functions that did the same thing into one as to not clutter the code. Finally, I used [retry](https://pypi.org/project/retry/) to run my download function again up to some tries, as sometimes pytube has a bug where it cannot download/access a video, but then on the second/third try it performs normally.
+So yeah, that's where I'm at. On the other side, I tried to avoid repetition as much as possible, so I combined several functions that did the same thing into one as to not clutter the code. Finally, I used [retry](https://pypi.org/project/retry/) to run my download function again up to some tries, as sometimes pytube has a bug where it cannot download/access a video, but then on the second/third try it performs normally. I don't know if it helps yet, but we'll see how it goes.
+
+
+## [musicPlayer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/musicPlayer.py)
+I wanted to be able to play the downloaded audio playlist from my previous script, so I figured I'd make a general script that plays all the .mp3 files in a folder given its path, and if there are more folders there, it would check each one, save each file's absolute path, and save it on a dict to be played on a loop. 
+
+Had to get help from ChatGPT in terms of what library to use (apparently [pygame](https://www.pygame.org/news), which I didn't expect), the correct use of the [tqdm](https://tqdm.github.io/) terminal progress bar, and some functions to further clean the title of the songs, as people on YouTube don't know s*** about naming conventions.
+
+Oh, and to use pygame on my OSX 10.13.6, I had to download "lame" via homebrew for it to work properly.
 
 
 ## [Series ProgressBar](https://github.com/L-Lawliet27/Python_Stuff/tree/main/SeriesProgressBar/MainPrototype)
