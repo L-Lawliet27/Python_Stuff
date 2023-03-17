@@ -1,0 +1,14 @@
+PythonCheatSheet.png
+TNoTW_Prologue.pdf
+altYTDownloader[Failed].py
+SI/
+eBookPriceNotifier/booksInfo.json
+eBookPriceNotifier/geckodriver.log
+eBookPriceNotifier/info.json
+eBookPriceNotifier/service_account.json
+eBookPriceNotifier/tempCodeRunnerFile.py
+eBookPriceNotifier/.config
+eBookPriceNotifier/.vscode
+eBookPriceNotifier/eBookPriceNotifier.py
+__pycache__
+.vscode
