@@ -15,6 +15,8 @@ This takes any file from my specified folder that has extensions ".epub", the so
 ## [fileOrganizer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/fileOrganizer.py)
 This was a project inspired from the one made by @tuomaskivioja for his [YouTube channel](https://www.youtube.com/watch?v=NCvI-K0Gp90&list=PLuKvKzt4UKNGCCPx5ERvM0Bp6lLNtryjh&index=22&t=482s). Only, I wrote it so that it manages my folders given the path + it only creates the given folder if and only if it finds the files within the declared extensions, otherwise I would have extra folders I don't need at the moment. 
 
+### Update [21/03/23]
+Instead of creating/adding the eBooks to the designated folder according to the dict., I just move them to my Kindle folder as specified in my sendToKindle.py script. This way I can use both commands after the other, as I already had said Kindle folder to store all my eBooks. The only thing that I will have to drag would be those eBooks that are in PDF format. 
 
 ## [ytDownloader.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/ytDownloader.py)
 A YouTube video and playlist downloader using the [pytube](https://pytube.io/en/latest/) library. 
