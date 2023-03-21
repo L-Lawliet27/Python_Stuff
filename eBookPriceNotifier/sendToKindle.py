@@ -6,8 +6,6 @@ from os import scandir, path, makedirs, replace
 
 kindleFolder = "/Users/Andres/Documents/Kindle/"
 ebookTypes = ('.epub', '.mobi', '.pdf')
-pdfType = '.pdf'
-
 
 def getSubtype(fileExt):
     return path.splitext(fileExt)[1][1:]
