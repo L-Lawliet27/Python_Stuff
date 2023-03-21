@@ -9,7 +9,7 @@ Turns out, that wasn't a smart approach, as it went incredibly slow and was pron
 Somewhat inspired by @allanburleson [Sanderson Progress Bar](https://gist.github.com/allanburleson/037bd04bdc8a208e3a61b376cb4b1884).
 
 ## [sendToKindle.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/eBookPriceNotifier/sendToKindle.py)
-This takes any file from my specified folder that has extensions ".epub", the soon deprecated ".mobi", and ".pdf" and sends them to my kindle via email.
+This takes any file from my specified folder that has extensions ".epub", the soon deprecated ".mobi", and ".pdf" and sends them to my kindle via email. Then, it moves said files to the "SentEbooks" folder within it (which it creates if it isn't so already).
 
 
 ## [fileOrganizer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/fileOrganizer.py)
