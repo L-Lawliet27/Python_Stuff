@@ -6,6 +6,8 @@ This was my second attempt at writing a script that went through a list of eBook
 
 Turns out, that wasn't a smart approach, as it went incredibly slow and was prone to crashes involving the driver as well as the smtplib library. So, I decided to start it from scratch, and instead I made a public Amazon wishlist with all these books, made a json file to store the info, and just used the driver once. Now it goes phenomenally fast and has no problem sending the email. 
 
+**NOTE: This is for the European version of Amazon, so you might need to tweak the code a little**
+
 Somewhat inspired by @allanburleson [Sanderson Progress Bar](https://gist.github.com/allanburleson/037bd04bdc8a208e3a61b376cb4b1884).
 
 ## [sendToKindle.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/eBookPriceNotifier/sendToKindle.py)
@@ -19,7 +21,7 @@ Added the functionality of sending a single eBook if it is in the "Downloads" fo
 This was a project inspired from the one made by @tuomaskivioja for his [YouTube channel](https://www.youtube.com/watch?v=NCvI-K0Gp90&list=PLuKvKzt4UKNGCCPx5ERvM0Bp6lLNtryjh&index=22&t=482s). Only, I wrote it so that it manages my folders given the path + it only creates the given folder if and only if it finds the files within the declared extensions, otherwise I would have extra folders I don't need at the moment. 
 
 ### Update [21/03/23]
-Instead of creating/adding the eBooks to the designated folder according to the dict., I just move them to my Kindle folder as specified in my sendToKindle.py script. This way I can use both commands after the other, as I already had said Kindle folder to store all my eBooks. The only thing that I will have to drag would be those eBooks that are in PDF format. 
+Instead of creating/adding the eBooks to the designated folder according to the dict., I just move them to my Kindle folder as specified in my _sendToKindle.py_ script. This way I can use both commands after the other, as I already had said Kindle folder to store all my eBooks. The only thing that I will have to drag would be those eBooks that are in PDF format. 
 
 ## [ytDownloader.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/ytDownloader.py)
 A YouTube video and playlist downloader using the [pytube](https://pytube.io/en/latest/) library. 
@@ -50,3 +52,5 @@ The main idea is that you put in the Amazon link to the eBook page for the book 
 At this moment I have down the main functionality, but I still need to finish the "ReadNext" one, that tells you what to read next depending on when you purchased the next entry and when you finished the last book in the series, then compares them with the rest of the series you have and lists them in a priority list.
 
 Lastly, this is a prototype, as I eventually plan to make it "cleaner" with a better interface, but this'll do for now.
+
+**NOTE: This is for the European version of Amazon, so you might need to tweak the code a little**
