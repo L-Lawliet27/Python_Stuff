@@ -11,6 +11,9 @@ Somewhat inspired by @allanburleson [Sanderson Progress Bar](https://gist.github
 ## [sendToKindle.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/eBookPriceNotifier/sendToKindle.py)
 This takes any file from my specified folder that has extensions ".epub", the soon deprecated ".mobi", and ".pdf" and sends them to my kindle via email. Then, it moves said files to the "SentEbooks" folder within it (which it creates if it isn't so already).
 
+### Same Day Update
+Added the functionality of sending a single eBook if it is in the "Downloads" folder. You just need to either add the "-s" option then the path to the file or the file itself (with the extension).
+
 
 ## [fileOrganizer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/fileOrganizer.py)
 This was a project inspired from the one made by @tuomaskivioja for his [YouTube channel](https://www.youtube.com/watch?v=NCvI-K0Gp90&list=PLuKvKzt4UKNGCCPx5ERvM0Bp6lLNtryjh&index=22&t=482s). Only, I wrote it so that it manages my folders given the path + it only creates the given folder if and only if it finds the files within the declared extensions, otherwise I would have extra folders I don't need at the moment. 
