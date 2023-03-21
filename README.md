@@ -1,5 +1,5 @@
 # Python_Stuff
-These are the python projects I did on my free time and that I often use
+These are the python projects I did on my free time and that I often use (by way of declaring aliases in my .bash_profile to make things easier)
 
 ## [altNotifier.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/eBookPriceNotifier/altNotifier.py)
 This was my second attempt at writing a script that went through a list of eBooks on Amazon and then sent an email with the ones that had a discount. I say my second because before I used gspread to go through a Google Sheet in my Drive that had each link to a specific book and visited each page with Selenium to extract the data using BeautifulSoup to fill the info in the spreadsheet as well as to compare prices.
@@ -7,6 +7,9 @@ This was my second attempt at writing a script that went through a list of eBook
 Turns out, that wasn't a smart approach, as it went incredibly slow and was prone to crashes involving the driver as well as the smtplib library. So, I decided to start it from scratch, and instead I made a public Amazon wishlist with all these books, made a json file to store the info, and just used the driver once. Now it goes phenomenally fast and has no problem sending the email. 
 
 Somewhat inspired by @allanburleson [Sanderson Progress Bar](https://gist.github.com/allanburleson/037bd04bdc8a208e3a61b376cb4b1884).
+
+## [sendToKindle.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/eBookPriceNotifier/sendToKindle.py)
+This takes any file from my specified folder that has extensions ".epub", the soon deprecated ".mobi", and ".pdf" and sends them to my kindle via email.
 
 
 ## [fileOrganizer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/fileOrganizer.py)
