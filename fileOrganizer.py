@@ -11,6 +11,8 @@ file_types = {'Documents': ['.pdf', '.docx', '.txt', '.xlsx', '.pptx', '.doc', '
               'Code': ['.html', '.py', '.java', '.cpp', '.c', '.cs', '.php', '.swift', '.css', '.js', '.asm', '.jnlp', '.xml', '.sql']
               }
 
+eBooksFolder = "/Users/Andres/Documents/Kindle/"
+
 
 def distrFiles(sourceDir):
     for file in scandir(sourceDir):
@@ -18,10 +20,14 @@ def distrFiles(sourceDir):
             fileExt = path.splitext(file.name)[1].lower()
             for dirName, extensions in file_types.items():
                 if fileExt in extensions:
-                    directory = path.join(sourceDir, dirName)
-                    makedirs(directory, exist_ok=True)
+                    if fileExt not in file_types['eBooks']:
+                        directory = path.join(sourceDir, dirName)
+                        makedirs(directory, exist_ok=True)
+                    else:
+                        directory=eBooksFolder    
                     newPath = path.join(directory, file.name)
                     replace(file.path, newPath)
+    
 
 
 def main():
