@@ -1,5 +1,7 @@
 # Python_Stuff
-These are the python projects I did on my free time and that I often use (by way of declaring aliases in my .bash_profile to make things easier)
+These are the python projects I did on my free time and that I often use (by way of declaring aliases in my .bash_profile to make things easier).
+
+Oh, and everything is in **Python3**.
 
 ## [altNotifier.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/eBookPriceNotifier/altNotifier.py)
 This was my second attempt at writing a script that went through a list of eBooks on Amazon and then sent an email with the ones that had a discount. I say my second because before I used gspread to go through a Google Sheet in my Drive that had each link to a specific book and visited each page with Selenium to extract the data using BeautifulSoup to fill the info in the spreadsheet as well as to compare prices.
