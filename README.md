@@ -1,5 +1,5 @@
 # Python_Stuff
-These are the python projects I did on my free time and that I often use (by way of declaring aliases in my .bash_profile to make things easier).
+These are the python projects I did on my free time and that I often use (by way of declaring aliases in my _.bash_profile_ to make things easier).
 
 Oh, and everything is in **Python3**.
 
