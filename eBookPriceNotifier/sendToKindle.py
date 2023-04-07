@@ -6,9 +6,9 @@ from os import scandir, path, makedirs, replace, chdir
 from sys import argv
 
 
-kindleFolder = f"/Users/Andres/Documents/Kindle/"
+kindleFolder = "/Users/Andres/Documents/Kindle/"
 downloadsFolder = "Downloads/"
-downloadsPath = f"/Users/Andres/Downloads/"
+downloadsPath = "/Users/Andres/Downloads/"
 ebookTypes = ('.epub', '.mobi', '.pdf')
 
 
@@ -29,12 +29,18 @@ def attachEbook(fileName, filePath, fileExt, dir, msg):
 
 
 def scanAndSort(msg, directory):
+    totalFileSize = 0.0
+    couldNotSend = 0
     for file in scandir(kindleFolder):
         if file.is_file():
             fileExt = path.splitext(file.name)[1].lower()
             if fileExt in ebookTypes:
-                attachEbook(fileName=file.name, filePath=file.path,
-                            fileExt=fileExt, dir=directory, msg=msg)
+                totalFileSize += (file.stat().st_size / (1024*1024))
+                if totalFileSize < 25:
+                    attachEbook(fileName=file.name, filePath=file.path,
+                                fileExt=fileExt, dir=directory, msg=msg)
+                else: couldNotSend+=1
+    return couldNotSend
 
 
 def sendToKindle(kindleEmail, email, passwd, oneEbook=None):
@@ -46,7 +52,7 @@ def sendToKindle(kindleEmail, email, passwd, oneEbook=None):
     msg['From'] = email
 
     if oneEbook is None:
-        scanAndSort(msg, directory)
+        booksLeft = scanAndSort(msg, directory)
     else:
         attachEbook(fileName=oneEbook[0], filePath=oneEbook[1],
                     fileExt=oneEbook[2], dir=directory, msg=msg)
@@ -56,6 +62,9 @@ def sendToKindle(kindleEmail, email, passwd, oneEbook=None):
         smtp.login(email, passwd)
         smtp.sendmail(email, kindleEmail, msg.as_string())
         smtp.quit()
+    
+    if booksLeft > 0:
+        print(f"There are {booksLeft} books still in folder")
 
 
 def main():
@@ -66,13 +75,14 @@ def main():
     passwd = info.get("sender_pswd")
 
     if len(argv) == 3:
-        if argv[1] != "-s":
+        if argv[1] != "-d" or argv[1] != "-k":
             print(
-                "Usage: sendToKindle.py [-s <path to file in \"Downloads\" folder or file name>]\n\n")
+                "Usage: sendToKindle.py [-s <path to file in \"Downloads\" or \"Kindle\" folder or file name>]\n\n")
             exit()
 
         base_name = path.split(argv[2])[1].strip()
-        absPath = path.join(downloadsPath, base_name)
+        absPath = path.join(
+            downloadsPath, base_name) if argv[1] == "-d" else path.join(kindleFolder, base_name)
 
         if path.isfile(absPath):
             fileExt = path.splitext(base_name)[1].lower()
@@ -82,8 +92,8 @@ def main():
             else:
                 print("This is not a valid file — Valid files: .epub, .mobi, .pdf\n\n")
                 exit()
-        else:
-            sendToKindle(kindleEmail, email, passwd)
+    else:
+        sendToKindle(kindleEmail, email, passwd)
 
 
 if __name__ == '__main__':
