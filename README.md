@@ -19,7 +19,7 @@ This takes any file from my specified folder that has extensions ".epub", the so
 Added the functionality of sending a single eBook if it is in the "Downloads" folder. You just need to either add the "-s" option then the path to the file or the file itself (with the extension).
 
 ### Update [05/04/23]
-I forgot to consider that gmail has a 25MB file limit, so I some code that, as it reads through the "Kindle" folder, cummulatively adds up the size of the ebooks/docs it attaches until it reaches 25MB. Then, if there are books left over, it sends a notification via terminal that tells you how many books remain in the folder that were not sent.
+I forgot to consider that gmail has a 25MB file limit, so I added some code that, as it reads through the "Kindle" folder, cummulatively adds up the size of the ebooks/docs it attaches until it reaches 25MB. Then, if there are books left over, it sends a notification via terminal that tells you how many books remain in the folder that were not sent.
 
 ## [fileOrganizer.py](https://github.com/L-Lawliet27/Python_Stuff/blob/main/fileOrganizer.py)
 This was a project inspired from the one made by @tuomaskivioja for his [YouTube channel](https://www.youtube.com/watch?v=NCvI-K0Gp90&list=PLuKvKzt4UKNGCCPx5ERvM0Bp6lLNtryjh&index=22&t=482s). Only, I wrote it so that it manages my folders given the path + it only creates the given folder if and only if it finds the files within the declared extensions, otherwise I would have extra folders I don't need at the moment. 
