@@ -5,7 +5,8 @@ import time
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 def waitForLoad(driver):
     # Scroll to the bottom of the page and wait for new items to load
@@ -25,8 +26,8 @@ def correctLink(link, domain):
 def getBooks(url,domain):
     books = {}
     options = Options()
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
+    options.add_argument('--headless')
+    driver = webdriver.Firefox(options=options)
     driver.get(url)
     waitForLoad(driver)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
