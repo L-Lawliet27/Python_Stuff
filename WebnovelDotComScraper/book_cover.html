@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Cover</title>
+    <style>
+        body {
+            font-family: serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+        }
+        .cover-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .cover-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border: 1px solid #000;
+        }
+        .book-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0 10px;
+        }
+        .author {
+            font-size: 1.5em;
+            margin: 5px 0;
+        }
+        .editor-translator {
+            font-size: 1em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-container">
+        <img src="cover-placeholder.jpg" alt="Book Cover" class="cover-image">
+        <div class="book-title">[Book Title]</div>
+        <div class="author">by [Author Name]</div>
+        <div class="editor-translator">Edited by [Editor Name] | Translated by [Translator Name]</div>
+    </div>
+</body>
+</html>
